@@ -1,7 +1,7 @@
 #!/bin/bash
 pnpm run pull
 cd toolset
-./prepareThingyForService.pl
+./prepareThingy.pl
 cd ..
 pnpm install
 

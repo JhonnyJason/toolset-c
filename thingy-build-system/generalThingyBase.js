@@ -5,16 +5,10 @@ const fs = require("fs")
 //############################################################
 const stdAuthor = "Lenard Frommelt"
 const stdInitialVersion = "0.0.1"
-const stdLicense = "Unlicense"
-
-//############################################################
-const coffeeSource = "sources/source/*/*.coffee"
-const liveSource = "sources/source/*/*.ls"
-const jsDest = "toolset/build/js/"
+const stdLicense = "CC0"
 
 //############################################################
 const base = "toolset/thingy-build-system/"
-const linkAllJSSCript = base + "link-all-js-and-json.js"
 
 //############################################################
 //#region 
@@ -60,36 +54,12 @@ const getThingyRemote = () => {
 
 const getBaseScripts = (name) => {
     return {
-        "build-coffee": "coffee -o " + jsDest + " -c " + coffeeSource,
-        "watch-coffee": "coffee -o " + jsDest + " -cw " + coffeeSource,
-    
-        // "build-live": "lsc -o " + jsDest + " -c " + liveSource,
-        "build-live": "echo 0",
-        // "watch-live": "lsc -o " + jsDest + " -cw " + liveSource,
-        "watch-live": "echo 0",
-        
-        "link-all-js-and-json": linkAllJSSCript,
-
         "ncu-update": "ncu -u",
         "reinstall": "pnpm install",
         "update-packages":"run-s -ns ncu-update reinstall",
-        
-        "module-gen": "thingy-module-gen --",
-        "sync-allmodules": "thingy-allmodules-sync",
-        "add-module": "run-s -ns \"module-gen {*}\" sync-allmodules --",
-
-        "sourcemodulecreate": "cd sources/source && thingymodulecreate",
-        "use-sub-sourcemodule": "run-s \"sourcemodulecreate submodule,{1},use,{2}\"  --",
-        "merge-sub-sourcemodule": "run-s -ns  \"sourcemodulecreate submodule,{1},merge,{2}\"  --",
-        "merge-dir-sourcemodule": "run-s -ns  \"sourcemodulecreate directory,{1},merge,{2}\"  --",    
-        "sourcemodule-to-sub": "run-s \"sourcemodulecreate submodule,{1}\" --",
-        "sourcemodule-to-dir": "run-s \"sourcemodulecreate directory,{1}\" --",
 
         "push": "thingysync push --message",
         "pull": "thingysync pull",
-
-        "postinstall": "pnpm run initialize-thingy"
-
     }
 }
 
@@ -112,15 +82,9 @@ const getHomepage = (remoteURL) => {
 
 const getBaseDependencies = ()  => {
     return {
-        "coffeescript": "^2.7.0",
-        "livescript": "^1.6.0",
-        "npm-check-updates": "^19.3.0",
+        "npm-check-updates": "^19.3.1",
         "npm-run-all": "^4.1.5",
-        "thingy-allmodules-sync": "^0.2.0",
-        "thingy-module-gen": "^0.1.6",
-        "thingymodulecreate": "^0.1.8",
-        "thingysync": "^0.1.2",
-        "thingy-debug": "^0.0.1"
+        "thingysync": "^0.1.2"
     }
 }
 
